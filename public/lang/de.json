@@ -1,0 +1,33 @@
+{
+  "language": "Deutsch",
+  "game": {
+    "title": "Sudoku Journal",
+    "subtitle": "Klassisches Rätselspiel im Tagebuch-Stil",
+    "newGame": "Neues Spiel",
+    "hint": "Hinweis",
+    "solve": "Lösen",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "clear": "Löschen",
+    "timer": "Zeit",
+    "congratulations": "Glückwunsch! Sudoku gelöst!",
+    "selectCell": "Wählen Sie eine Zelle zum Eingeben einer Zahl",
+    "cellPosition": "Zelle ({row}, {col})",
+    "difficultyLevel": "Schwierigkeitsgrad"
+  },
+  "difficulty": {
+    "beginner": "Anfänger",
+    "amateur": "Amateur",
+    "experienced": "Erfahren",
+    "veteran": "Veteran",
+    "master": "Meister"
+  },
+  "footer": {
+    "language": "Sprache",
+    "copyright": "© 2024 Sudoku Journal. Mit ❤️ für Rätselliebhaber gemacht."
+  },
+  "help": {
+    "title": "Hilfe",
+    "askAssistant": "Assistent fragen"
+  }
+}

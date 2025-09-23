@@ -1,0 +1,33 @@
+{
+  "language": "English",
+  "game": {
+    "title": "Sudoku Journal",
+    "subtitle": "Classic puzzle game in journal style",
+    "newGame": "New Game",
+    "hint": "Hint",
+    "solve": "Solve",
+    "undo": "Undo",
+    "redo": "Redo",
+    "clear": "Clear",
+    "timer": "Time",
+    "congratulations": "Congratulations! Sudoku solved!",
+    "selectCell": "Select a cell to enter a number",
+    "cellPosition": "Cell ({row}, {col})",
+    "difficultyLevel": "Difficulty Level"
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "amateur": "Amateur",
+    "experienced": "Experienced",
+    "veteran": "Veteran",
+    "master": "Master"
+  },
+  "footer": {
+    "language": "Language",
+    "copyright": "© 2024 Sudoku Journal. Made with ❤️ for puzzle lovers."
+  },
+  "help": {
+    "title": "Help",
+    "askAssistant": "Ask Assistant"
+  }
+}

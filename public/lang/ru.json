@@ -1,0 +1,33 @@
+{
+  "language": "Русский",
+  "game": {
+    "title": "Sudoku Journal",
+    "subtitle": "Классическая игра в стиле записной книжки",
+    "newGame": "Новая игра",
+    "hint": "Подсказка",
+    "solve": "Решение",
+    "undo": "Отменить",
+    "redo": "Повторить",
+    "clear": "Очистить",
+    "timer": "Время",
+    "congratulations": "Поздравляем! Судоку решено!",
+    "selectCell": "Выберите клетку для ввода числа",
+    "cellPosition": "Клетка ({row}, {col})",
+    "difficultyLevel": "Уровень сложности"
+  },
+  "difficulty": {
+    "beginner": "Новичок",
+    "amateur": "Любитель",
+    "experienced": "Опытный",
+    "veteran": "Ветеран",
+    "master": "Мастер"
+  },
+  "footer": {
+    "language": "Язык",
+    "copyright": "© 2024 Sudoku Journal. Сделано с ❤️ для любителей головоломок."
+  },
+  "help": {
+    "title": "Помощь",
+    "askAssistant": "Спросить помощника"
+  }
+}

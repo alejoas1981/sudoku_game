@@ -1,0 +1,80 @@
+import React from 'react';
+import { cn } from '@/lib/utils';
+
+interface SudokuGridProps {
+    grid: number[][];
+    solution: number[][];
+    givenCells: boolean[][];
+    selectedCell: { row: number; col: number } | null;
+    errorCells: { row: number; col: number }[];
+    hintCells: { row: number; col: number }[];
+    onCellClick: (row: number, col: number) => void;
+    onCellChange: (row: number, col: number, value: number) => void;
+}
+
+export const SudokuGrid: React.FC<SudokuGridProps> = ({
+                                                          grid,
+                                                          solution,
+                                                          givenCells,
+                                                          selectedCell,
+                                                          errorCells,
+                                                          hintCells,
+                                                          onCellClick,
+                                                          onCellChange
+                                                      }) => {
+    const isError = (row: number, col: number) =>
+        errorCells.some(cell => cell.row === row && cell.col === col);
+    
+    const isHint = (row: number, col: number) =>
+        hintCells.some(cell => cell.row === row && cell.col === col);
+    
+    const isSelected = (row: number, col: number) =>
+        selectedCell?.row === row && selectedCell?.col === col;
+    
+    const handleKeyDown = (e: React.KeyboardEvent, row: number, col: number) => {
+        if (givenCells[row][col]) return;
+        
+        const value = parseInt(e.key);
+        if (value >= 1 && value <= 9) {
+            onCellChange(row, col, value);
+        } else if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') {
+            onCellChange(row, col, 0);
+        }
+    };
+    
+    return (
+        <div className="sudoku-grid w-full max-w-md mx-auto aspect-square">
+            <div className="grid grid-cols-9 h-full">
+                {grid.map((row, rowIndex) =>
+                        row.map((cell, colIndex) => (
+                            <div
+                                key={`${rowIndex}-${colIndex}`}
+                                className={cn(
+                                    "sudoku-cell cursor-pointer text-center select-none",
+                                    {
+                                        'given': givenCells[rowIndex][colIndex],
+                                        'selected': isSelected(rowIndex, colIndex),
+                                        'error': isError(rowIndex, colIndex),
+                                        'hint': isHint(rowIndex, colIndex),
+                                        'thick-border-right': colIndex === 2 || colIndex === 5,
+                                        'thick-border-bottom': rowIndex === 2 || rowIndex === 5,
+                                    }
+                                )}
+                                onClick={() => onCellClick(rowIndex, colIndex)}
+                                onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
+                                tabIndex={0}
+                                role="gridcell"
+                                aria-label={`Cell ${rowIndex + 1}, ${colIndex + 1}`}
+                            >
+                                {cell !== 0 && (
+                                    <span className="w-full h-full flex items-center justify-center">
+                  {cell}
+                </span>
+                                )}
+                            </div>
+                        ))
+                )}
+            </div>
+        </div>
+    );
+};

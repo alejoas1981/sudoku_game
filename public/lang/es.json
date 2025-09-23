@@ -1,0 +1,33 @@
+{
+  "language": "Español",
+  "game": {
+    "title": "Sudoku Journal",
+    "subtitle": "Juego de rompecabezas clásico en estilo diario",
+    "newGame": "Nuevo Juego",
+    "hint": "Pista",
+    "solve": "Resolver",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "clear": "Limpiar",
+    "timer": "Tiempo",
+    "congratulations": "¡Felicidades! ¡Sudoku resuelto!",
+    "selectCell": "Selecciona una celda para ingresar un número",
+    "cellPosition": "Celda ({row}, {col})",
+    "difficultyLevel": "Nivel de Dificultad"
+  },
+  "difficulty": {
+    "beginner": "Principiante",
+    "amateur": "Aficionado",
+    "experienced": "Experimentado",
+    "veteran": "Veterano",
+    "master": "Maestro"
+  },
+  "footer": {
+    "language": "Idioma",
+    "copyright": "© 2024 Sudoku Journal. Hecho con ❤️ para amantes de los rompecabezas."
+  },
+  "help": {
+    "title": "Ayuda",
+    "askAssistant": "Preguntar al Asistente"
+  }
+}

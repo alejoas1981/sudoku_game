@@ -1,0 +1,33 @@
+{
+  "language": "Français",
+  "game": {
+    "title": "Sudoku Journal",
+    "subtitle": "Jeu de puzzle classique dans le style journal",
+    "newGame": "Nouveau Jeu",
+    "hint": "Indice",
+    "solve": "Résoudre",
+    "undo": "Annuler",
+    "redo": "Refaire",
+    "clear": "Effacer",
+    "timer": "Temps",
+    "congratulations": "Félicitations ! Sudoku résolu !",
+    "selectCell": "Sélectionnez une cellule pour saisir un nombre",
+    "cellPosition": "Cellule ({row}, {col})",
+    "difficultyLevel": "Niveau de Difficulté"
+  },
+  "difficulty": {
+    "beginner": "Débutant",
+    "amateur": "Amateur",
+    "experienced": "Expérimenté",
+    "veteran": "Vétéran",
+    "master": "Maître"
+  },
+  "footer": {
+    "language": "Langue",
+    "copyright": "© 2024 Sudoku Journal. Fait avec ❤️ pour les amateurs de puzzles."
+  },
+  "help": {
+    "title": "Aide",
+    "askAssistant": "Demander à l'Assistant"
+  }
+}
