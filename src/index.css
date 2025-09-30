@@ -4,97 +4,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Sudoku Journal Design System - Warm, paper-like aesthetic */
-
 @layer base {
     :root {
-        /* Paper journal color palette */
-        --background: 42 15% 97%;           /* Warm cream paper */
-        --foreground: 25 15% 15%;           /* Dark ink */
+        /* Light gray journal palette */
+        --background: 42 10% 96%;           /* Warm off-white paper */
+        --foreground: 0 0% 20%;           /* Soft dark gray ink */
 
-        --card: 42 25% 98%;                 /* Slightly warmer card */
-        --card-foreground: 25 15% 15%;
+        --card: 0 0% 94%;                 /* Slightly darker card */
+        --card-foreground: 0 0% 20%;
 
-        --popover: 42 25% 98%;
-        --popover-foreground: 25 15% 15%;
+        --popover: 0 0% 94%;
+        --popover-foreground: 0 0% 20%;
 
-        --primary: 25 85% 35%;              /* Rich brown ink */
-        --primary-foreground: 42 25% 98%;
+        --primary: 0 0% 40%;              /* Medium gray */
+        --primary-foreground: 0 0% 97%;
 
-        --secondary: 38 20% 92%;            /* Light journal line */
-        --secondary-foreground: 25 45% 25%;
+        --secondary: 0 0% 88%;            /* Light gray lines */
+        --secondary-foreground: 0 0% 35%;
 
-        --muted: 40 12% 90%;                /* Subtle paper texture */
-        --muted-foreground: 25 8% 45%;
+        --muted: 0 0% 90%;                /* Subtle paper texture */
+        --muted-foreground: 0 0% 45%;
 
-        --accent: 35 25% 88%;               /* Warm highlight */
-        --accent-foreground: 25 45% 25%;
+        --accent: 0 0% 85%;               /* Soft highlight gray */
+        --accent-foreground: 0 0% 25%;
 
-        --destructive: 0 75% 55%;           /* Error red */
-        --destructive-foreground: 42 25% 98%;
+        --destructive: 0 75% 55%;         /* Error red remains */
+        --destructive-foreground: 0 0% 97%;
 
-        --success: 142 76% 36%;             /* Success green */
-        --success-foreground: 42 25% 98%;
+        --success: 142 76% 36%;           /* Success green remains */
+        --success-foreground: 0 0% 97%;
 
-        --warning: 45 93% 47%;              /* Warning amber */
-        --warning-foreground: 25 15% 15%;
+        --warning: 45 93% 47%;            /* Warning amber remains */
+        --warning-foreground: 0 0% 20%;
 
-        --border: 35 15% 85%;               /* Soft journal lines */
-        --input: 35 15% 85%;
-        --ring: 25 85% 35%;
+        --border: 0 0% 80%;               /* Soft gray lines */
+        --input: 0 0% 80%;
+        --ring: 0 0% 40%;
 
-        --grid-line: 35 15% 75%;            /* Sudoku grid lines */
-        --grid-line-thick: 25 45% 45%;      /* Thick block separators */
-        --grid-selected: 45 60% 88%;        /* Selected cell highlight */
-        --grid-error: 0 75% 92%;            /* Error cell background */
-        --grid-hint: 142 40% 92%;           /* Hint cell background */
+        --grid-line: 0 0% 70%;            /* Sudoku grid lines */
+        --grid-line-thick: 0 0% 50%;      /* Thick block separators */
+        --grid-selected: 0 0% 88%;        /* Selected cell highlight */
+        --grid-error: 0 75% 92%;          /* Error cell background */
+        --grid-hint: 0 0% 92%;            /* Hint cell background */
 
-        --shadow-soft: 25 15% 15% 0.1;      /* Soft paper shadow */
-        --shadow-paper: 25 15% 15% 0.05;    /* Subtle paper depth */
+        --shadow-soft: 0 0% 20% 0.1;
+        --shadow-paper: 0 0% 20% 0.05;
 
         --radius: 0.375rem;
 
-        --sidebar-background: 0 0% 98%;
-
-        --sidebar-foreground: 240 5.3% 26.1%;
-
-        --sidebar-primary: 240 5.9% 10%;
-
-        --sidebar-primary-foreground: 0 0% 98%;
-
-        --sidebar-accent: 240 4.8% 95.9%;
-
-        --sidebar-accent-foreground: 240 5.9% 10%;
-
-        --sidebar-border: 220 13% 91%;
-
-        --sidebar-ring: 217.2 91.2% 59.8%;
+        --sidebar-background: 0 0% 97%;
+        --sidebar-foreground: 0 0% 30%;
+        --sidebar-primary: 0 0% 40%;
+        --sidebar-primary-foreground: 0 0% 97%;
+        --sidebar-accent: 0 0% 96%;
+        --sidebar-accent-foreground: 0 0% 30%;
+        --sidebar-border: 0 0% 90%;
+        --sidebar-ring: 0 0% 60%;
     }
 
     .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+        --background: 222 5% 10%;
+        --foreground: 0 0% 90%;
 
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
+        --card: 222.2 5% 15%;
+        --card-foreground: 0 0% 90%;
 
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
+        --primary: 0 0% 90%;
+        --primary-foreground: 222.2 5% 15%;
 
         --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary-foreground: 0 0% 90%;
 
         --muted: 217.2 32.6% 17.5%;
         --muted-foreground: 215 20.2% 65.1%;
 
         --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
+        --accent-foreground: 0 0% 90%;
 
         --border: 217.2 32.6% 17.5%;
         --input: 217.2 32.6% 17.5%;
@@ -118,17 +103,33 @@
     body {
         @apply bg-background text-foreground font-inter;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        background-image:
+                radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
+                radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
+        background-size: 4px 4px, 3px 3px;
+        color: hsl(0 0% 20%);
+        font-family: 'Inter', sans-serif;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
 
-    /* Custom utilities for Sudoku Journal */
+    body.dark {
+        background-image:
+                radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 4px 4px, 3px 3px;
+        color: hsl(0 0% 90%);
+    }
+
     .sudoku-grid {
         @apply bg-card shadow-sm border border-border rounded-lg overflow-hidden;
-        box-shadow: 0 4px 6px -1px hsl(var(--shadow-paper)), 0 2px 4px -1px hsl(var(--shadow-paper));
+        box-shadow: 0 4px 6px -1 hsl(var(--shadow-paper)), 0 2px 4px -1 hsl(var(--shadow-paper));
     }
 
     .sudoku-cell {
         @apply w-full h-full flex items-center justify-center text-lg font-medium border border-grid-line bg-card transition-all duration-200;
+        aspect-ratio: 1 / 1;
         font-family: 'JetBrains Mono', monospace;
+        background: hsl(var(--card)) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAG0lEQVQYV2NkYGD4z0AEYBxVSFQAwCwGBgr08PdkAAAAAElFTkSuQmCC') repeat;
     }
 
     .sudoku-cell:hover {
@@ -173,7 +174,7 @@
     }
 
     .journal-button.outline {
-        @apply border-2 border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground;
+        @apply border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground;
     }
 
     .journal-button.ghost {
@@ -185,7 +186,6 @@
         box-shadow: 0 1px 3px 0 hsl(var(--shadow-paper)), 0 1px 2px 0 hsl(var(--shadow-paper));
     }
 
-    /* Ensure all buttons are always visible with strong contrast */
     .journal-button {
         @apply opacity-100 transition-all duration-200;
         min-height: 2.5rem;
@@ -200,13 +200,11 @@
     }
 }
 
-
-
 @layer base {
-  * {
-    @apply border-border;
+    * {
+        @apply border-border;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
 }
