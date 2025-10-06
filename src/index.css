@@ -129,7 +129,7 @@
         @apply w-full h-full flex items-center justify-center text-lg font-medium border border-grid-line bg-card transition-all duration-200;
         aspect-ratio: 1 / 1;
         font-family: 'JetBrains Mono', monospace;
-        background: hsl(var(--card)) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAG0lEQVQYV2NkYGD4z0AEYBxVSFQAwCwGBgr08PdkAAAAAElFTkSuQmCC') repeat;
+        background: hsl(var(--card));
     }
 
     .sudoku-cell:hover {
