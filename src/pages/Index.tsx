@@ -108,6 +108,7 @@ const Index = () => {
                         <SudokuGrid
                             grid={gameState.grid}
                             solution={gameState.solution}
+                            highlightedNumber={gameState.highlightedNumber}
                             givenCells={gameState.givenCells}
                             selectedCell={gameState.selectedCell}
                             errorCells={gameState.errorCells}

@@ -31,6 +31,8 @@
         --destructive: 0 75% 55%;         /* Error red remains */
         --destructive-foreground: 0 0% 97%;
 
+        --color-graphite-dark: 0, 0%, 51%;
+
         --success: 142 76% 36%;           /* Success green remains */
         --success-foreground: 0 0% 97%;
 
@@ -134,6 +136,15 @@
 
     .sudoku-cell:hover {
         @apply bg-accent/50;
+    }
+
+    .sudoku-cell.highlight-row-col {
+        background-color: hsl(var(--accent)) !important;
+    }
+
+    .sudoku-cell.highlight-number {
+        background-color: hsl(var(--color-graphite-dark)) !important;
+        color: hsl(var(--background)) !important;
     }
 
     .sudoku-cell.selected {
