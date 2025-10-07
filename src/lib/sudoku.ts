@@ -70,15 +70,33 @@ export class SudokuGame {
         return true;
     }
 
+    private countSolutions(grid: SudokuGrid): number {
+        let count = 0;
+        const solve = () => {
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    if (grid[row][col] === 0) {
+                        for (let num = 1; num <= 9; num++) {
+                            if (this.isValidPlacement(grid, row, col, num)) {
+                                grid[row][col] = num;
+                                solve();
+                                grid[row][col] = 0; // Backtrack
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+            count++;
+        };
+        solve();
+        return count;
+    }
+
     private generateSolution(): SudokuGrid {
         const grid: SudokuGrid = Array(9).fill(null).map(() => Array(9).fill(0));
-
-        // Fill diagonal boxes first
         this.fillDiagonalBoxes(grid);
-
-        // Solve the rest
         this.solveSudoku(grid);
-
         return grid;
     }
 
@@ -91,7 +109,6 @@ export class SudokuGame {
     private fillBox(grid: SudokuGrid, row: number, col: number): void {
         const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         this.shuffleArray(numbers);
-
         let index = 0;
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
@@ -100,7 +117,7 @@ export class SudokuGame {
         }
     }
 
-    private shuffleArray(array: number[]): void {
+    private shuffleArray<T>(array: T[]): void {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
@@ -112,14 +129,30 @@ export class SudokuGame {
         const puzzle = this.deepCopy(solution);
         const cellsToRemove = DIFFICULTY_SETTINGS[difficulty].cellsToRemove;
 
-        let removed = 0;
-        while (removed < cellsToRemove) {
-            const row = Math.floor(Math.random() * 9);
-            const col = Math.floor(Math.random() * 9);
+        const cells: { row: number; col: number }[] = [];
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                cells.push({ row: r, col: c });
+            }
+        }
+        this.shuffleArray(cells);
 
-            if (puzzle[row][col] !== 0) {
-                puzzle[row][col] = 0;
-                removed++;
+        let removedCount = 0;
+        for (const cell of cells) {
+            if (removedCount >= cellsToRemove) {
+                break;
+            }
+
+            const { row, col } = cell;
+            const originalValue = puzzle[row][col];
+
+            puzzle[row][col] = 0;
+            const puzzleCopy = this.deepCopy(puzzle);
+
+            if (this.countSolutions(puzzleCopy) !== 1) {
+                puzzle[row][col] = originalValue;
+            } else {
+                removedCount++;
             }
         }
 
@@ -142,12 +175,10 @@ export class SudokuGame {
 
     hasErrors(grid: SudokuGrid): { row: number; col: number }[] {
         const errors: { row: number; col: number }[] = [];
-
         for (let row = 0; row < 9; row++) {
             for (let col = 0; col < 9; col++) {
                 const num = grid[row][col];
                 if (num !== 0) {
-                    // Temporarily remove the number to check if placement is valid
                     grid[row][col] = 0;
                     if (!this.isValidPlacement(grid, row, col, num)) {
                         errors.push({ row, col });
@@ -156,28 +187,22 @@ export class SudokuGame {
                 }
             }
         }
-
         return errors;
     }
 
-    getHint(grid: SudokuGrid, solution: SudokuGrid): { row: number; col: number; value: number } | null {
-        const emptyCells: { row: number; col: number }[] = [];
-
-        for (let row = 0; row < 9; row++) {
-            for (let col = 0; col < 9; col++) {
-                if (grid[row][col] === 0) {
-                    emptyCells.push({ row, col });
-                }
+    getHint(
+        grid: SudokuGrid,
+        solution: SudokuGrid,
+        selectedCell: { row: number; col: number } | null
+    ): { row: number; col: number; value: number } | null {
+        if (selectedCell) {
+            const { row, col } = selectedCell;
+            // Provide hint only if the selected cell is empty
+            if (grid[row][col] === 0) {
+                return { row, col, value: solution[row][col] };
             }
         }
-
-        if (emptyCells.length === 0) return null;
-
-        const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        return {
-            row: randomCell.row,
-            col: randomCell.col,
-            value: solution[randomCell.row][randomCell.col]
-        };
+        // If no cell is selected or the selected cell is not empty, do nothing.
+        return null;
     }
 }

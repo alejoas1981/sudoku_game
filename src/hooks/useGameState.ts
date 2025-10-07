@@ -183,15 +183,47 @@ export const useGameState = () => {
     
     const getHint = useCallback(() => {
         setGameState(prev => {
-            if (prev.gameCompleted) return prev;
-            
-            const hint = game.getHint(prev.grid, prev.solution);
-            if (!hint) return prev;
-            
+            if (prev.gameCompleted) {
+                return prev;
+            }
+
+            const hint = game.getHint(prev.grid, prev.solution, prev.selectedCell);
+
+            if (!hint) {
+                return prev;
+            }
+
+            const { row, col, value } = hint;
+            const newGrid = prev.grid.map(r => [...r]);
+            const oldValue = newGrid[row][col];
+
+            if (oldValue === value) {
+                return prev;
+            }
+
+            newGrid[row][col] = value;
+
+            const move: GameMove = { row, col, oldValue, newValue: value };
+            const newHistory = prev.history.slice(0, prev.historyIndex + 1);
+            newHistory.push(move);
+
+            const errorCells = game.hasErrors(newGrid);
+            const hintCells = [...prev.hintCells, { row, col }];
+            const gameCompleted = game.isComplete(newGrid) && errorCells.length === 0;
+
+            if (gameCompleted && !prev.gameCompleted) {
+                updateGameStats(prev.difficulty, true, prev.timer + 1);
+                clearSavedGame();
+            }
+
             return {
                 ...prev,
-                hintCells: [...prev.hintCells, { row: hint.row, col: hint.col }],
-                selectedCell: { row: hint.row, col: hint.col }
+                grid: newGrid,
+                errorCells,
+                hintCells,
+                gameCompleted,
+                history: newHistory,
+                historyIndex: newHistory.length - 1
             };
         });
     }, [game]);
