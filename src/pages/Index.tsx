@@ -21,13 +21,14 @@ const Index = () => {
         undo,
         redo,
         canUndo,
-        canRedo
+        canRedo,
+        toggleIntellectualAssistant
     } = useGameState();
-    
+
     // Initialize API and service worker
     useEffect(() => {
         initializeAPI();
-        
+
         // Register service worker for PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js')
@@ -38,10 +39,10 @@ const Index = () => {
                     console.log('SW registration failed: ', registrationError);
                 });
         }
-        
+
         return () => cleanupAPI();
     }, []);
-    
+
     // Show loading state while translations are loading
     if (loading) {
         return (
@@ -57,21 +58,21 @@ const Index = () => {
     const handleCellClick = (row: number, col: number) => {
         selectCell(row, col);
     };
-    
+
     const handleCellChange = (row: number, col: number, value: number) => {
         makeMove(row, col, value);
     };
-    
+
     const handleDifficultyChange = (difficulty: Difficulty) => {
         startNewGame(difficulty);
     };
-    
+
     const handleNumberSelect = (number: number) => {
         if (gameState.selectedCell) {
             makeMove(gameState.selectedCell.row, gameState.selectedCell.col, number);
         }
     };
-    
+
     return (
         <div className="min-h-screen bg-background p-4">
             <div className="max-w-6xl mx-auto">
@@ -80,7 +81,7 @@ const Index = () => {
                     <h1 className="text-4xl font-bold text-primary mb-2">{t('game.title')}</h1>
                     <p className="text-muted-foreground">{t('game.subtitle')}</p>
                 </header>
-                
+
                 {/* Main Game Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Game Controls - Left Side */}
@@ -97,12 +98,14 @@ const Index = () => {
                             canRedo={canRedo}
                             timer={gameState.timer}
                             gameCompleted={gameState.gameCompleted}
+                            isIntellectualAssistantEnabled={gameState.isIntellectualAssistantEnabled}
+                            onToggleIntellectualAssistant={toggleIntellectualAssistant}
                         />
                         <div className="mt-4 flex justify-center">
                             <ChatGPTHelper gameState={gameState} />
                         </div>
                     </div>
-                    
+
                     {/* Sudoku Grid - Center */}
                     <div className="lg:order-2 flex flex-col items-center">
                         <SudokuGrid
@@ -112,12 +115,13 @@ const Index = () => {
                             givenCells={gameState.givenCells}
                             selectedCell={gameState.selectedCell}
                             errorCells={gameState.errorCells}
+                            intellectualErrorCells={gameState.intellectualErrorCells}
                             hintCells={gameState.hintCells}
                             onCellClick={handleCellClick}
                             onCellChange={handleCellChange}
                         />
                     </div>
-                    
+
                     {/* Number Pad - Right Side */}
                     <div className="lg:order-3">
                         <NumberPad
@@ -126,7 +130,7 @@ const Index = () => {
                         />
                     </div>
                 </div>
-                
+
                 {/* Footer with language selector */}
                 <Footer />
             </div>

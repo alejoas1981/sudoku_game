@@ -16,6 +16,7 @@ export interface Translation {
         selectCell: string;
         cellPosition: string;
         difficultyLevel: string;
+        intellectualAssistant: string;
     };
     difficulty: {
         beginner: string;

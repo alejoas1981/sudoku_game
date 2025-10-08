@@ -22,53 +22,58 @@ export interface GameState {
     solution: number[][];
     givenCells: boolean[][];
     selectedCell: { row: number; col: number } | null;
+    highlightedCells: { row: number; col: number }[];
     highlightedNumber: number | null;
     errorCells: { row: number; col: number }[];
+    intellectualErrorCells: { row: number; col: number }[];
     hintCells: { row: number; col: number }[];
     difficulty: Difficulty;
     timer: number;
     gameCompleted: boolean;
     history: GameMove[];
     historyIndex: number;
+    isIntellectualAssistantEnabled: boolean;
 }
 
 const createInitialState = (game: SudokuGame): GameState => {
     const savedGame = loadGameFromLocalStorage();
     const savedDifficulty = loadDifficulty() || Difficulty.BEGINNER;
 
-    if (savedGame && !savedGame.gameCompleted) {
-        return {
-            grid: savedGame.grid,
-            solution: savedGame.solution,
-            givenCells: savedGame.givenCells,
-            difficulty: savedGame.difficulty,
-            timer: savedGame.timer,
-            gameCompleted: savedGame.gameCompleted,
-            history: savedGame.history || [],
-            historyIndex: savedGame.historyIndex,
-            selectedCell: null,
-            highlightedNumber: null,
-            errorCells: [],
-            hintCells: [],
-        };
-    } else {
-        const { puzzle, solution } = game.generatePuzzle(savedDifficulty);
-        const givenCells = puzzle.map(row => row.map(cell => cell !== 0));
-        return {
-            grid: puzzle,
-            solution,
-            givenCells,
-            selectedCell: null,
-            highlightedNumber: null,
-            errorCells: [],
-            hintCells: [],
-            difficulty: savedDifficulty,
-            timer: 0,
-            gameCompleted: false,
-            history: [],
-            historyIndex: -1
-        };
-    }
+    const getInitialState = () => {
+        if (savedGame && !savedGame.gameCompleted) {
+            return {
+                ...savedGame,
+                selectedCell: null,
+                highlightedCells: [],
+                highlightedNumber: null,
+                errorCells: [],
+                intellectualErrorCells: [],
+                hintCells: [],
+                isIntellectualAssistantEnabled: false,
+            };
+        } else {
+            const { puzzle, solution } = game.generatePuzzle(savedDifficulty);
+            const givenCells = puzzle.map(row => row.map(cell => cell !== 0));
+            return {
+                grid: puzzle,
+                solution,
+                givenCells,
+                selectedCell: null,
+                highlightedCells: [],
+                highlightedNumber: null,
+                errorCells: [],
+                intellectualErrorCells: [],
+                hintCells: [],
+                difficulty: savedDifficulty,
+                timer: 0,
+                gameCompleted: false,
+                history: [],
+                historyIndex: -1,
+                isIntellectualAssistantEnabled: false,
+            };
+        }
+    };
+    return getInitialState();
 };
 
 export const useGameState = () => {
@@ -103,29 +108,55 @@ export const useGameState = () => {
         const { puzzle, solution } = game.generatePuzzle(difficulty);
         const givenCells = puzzle.map(row => row.map(cell => cell !== 0));
         clearSavedGame();
-        setGameState(prevState => ({
-            ...prevState,
+        setGameState({
             grid: puzzle,
             solution,
             givenCells,
             selectedCell: null,
+            highlightedCells: [],
             highlightedNumber: null,
             errorCells: [],
+            intellectualErrorCells: [],
             hintCells: [],
             difficulty,
             timer: 0,
             gameCompleted: false,
             history: [],
-            historyIndex: -1
-        }));
-    }, [game]);
+            historyIndex: -1,
+            isIntellectualAssistantEnabled: false,
+        });
+    }, [game, gameState.difficulty]);
 
-    const selectCell = useCallback((row: number, col: number) => {
+    const toggleIntellectualAssistant = useCallback(() => {
         setGameState(prev => ({
             ...prev,
-            selectedCell: { row, col },
-            highlightedNumber: prev.grid[row][col]
+            isIntellectualAssistantEnabled: !prev.isIntellectualAssistantEnabled,
+            intellectualErrorCells: [], // Clear errors when toggling
         }));
+    }, []);
+
+    const selectCell = useCallback((row: number, col: number) => {
+        setGameState(prev => {
+            const selectedValue = prev.grid[row][col];
+            const highlightedCells: { row: number; col: number }[] = [];
+
+            if (selectedValue !== 0) {
+                for (let r = 0; r < 9; r++) {
+                    for (let c = 0; c < 9; c++) {
+                        if (prev.grid[r][c] === selectedValue) {
+                            highlightedCells.push({ row: r, col: c });
+                        }
+                    }
+                }
+            }
+
+            return {
+                ...prev,
+                selectedCell: { row, col },
+                highlightedCells,
+                highlightedNumber: selectedValue
+            };
+        });
     }, []);
 
     const makeMove = useCallback((row: number, col: number, value: number) => {
@@ -145,41 +176,80 @@ export const useGameState = () => {
             const errorCells = game.hasErrors(newGrid);
             const gameCompleted = game.isComplete(newGrid) && errorCells.length === 0;
 
+            let intellectualErrorCells = [...(prev.intellectualErrorCells || [])];
+            if (prev.isIntellectualAssistantEnabled) {
+                const isCorrect = value === 0 || prev.solution[row][col] === value;
+                const cellPos = { row, col };
+                const existingErrorIndex = intellectualErrorCells.findIndex(err => err.row === row && err.col === col);
+
+                if (!isCorrect) {
+                    if (existingErrorIndex === -1) {
+                        intellectualErrorCells.push(cellPos);
+                    }
+                } else {
+                    if (existingErrorIndex !== -1) {
+                        intellectualErrorCells.splice(existingErrorIndex, 1);
+                    }
+                }
+            }
+
             if (gameCompleted && !prev.gameCompleted) {
                 updateGameStats(prev.difficulty, true, prev.timer + 1);
                 clearSavedGame();
+            }
+
+            const highlightedCells: { row: number; col: number }[] = [];
+            if (value !== 0) {
+                for (let r = 0; r < 9; r++) {
+                    for (let c = 0; c < 9; c++) {
+                        if (newGrid[r][c] === value) {
+                            highlightedCells.push({ row: r, col: c });
+                        }
+                    }
+                }
             }
 
             return {
                 ...prev,
                 grid: newGrid,
                 errorCells,
+                intellectualErrorCells,
                 gameCompleted,
                 history: newHistory,
                 historyIndex: newHistory.length - 1,
+                highlightedCells,
                 highlightedNumber: value
             };
         });
     }, [game]);
 
     const getHint = useCallback(() => {
-        if (gameState.selectedCell) {
-            const hint = game.getHint(gameState.grid, gameState.solution, gameState.selectedCell);
-            if (hint) {
-                makeMove(hint.row, hint.col, hint.value);
-            }
-        }
-    }, [game, makeMove, gameState.selectedCell, gameState.grid, gameState.solution]);
+        setGameState(prev => {
+            if (prev.gameCompleted) return prev;
+            const hint = game.getHint(prev.grid, prev.solution, prev.selectedCell);
+            if (!hint) return prev;
+
+            const { row, col, value } = hint;
+            makeMove(row, col, value);
+            return prev;
+        });
+    }, [game, makeMove]);
 
     const solvePuzzle = useCallback(() => {
-        setGameState(prev => ({
-            ...prev,
-            grid: prev.solution.map(row => [...row]),
-            gameCompleted: true,
-            errorCells: [],
-            hintCells: [],
-            highlightedNumber: null
-        }));
+        setGameState(prev => {
+            updateGameStats(prev.difficulty, false);
+            clearSavedGame();
+            return {
+                ...prev,
+                grid: prev.solution.map(row => [...row]),
+                gameCompleted: true,
+                errorCells: [],
+                intellectualErrorCells: [],
+                hintCells: [],
+                highlightedCells: [],
+                highlightedNumber: null
+            };
+        });
     }, []);
 
     const undo = useCallback(() => {
@@ -198,9 +268,7 @@ export const useGameState = () => {
                 grid: newGrid,
                 errorCells,
                 gameCompleted,
-                historyIndex: prev.historyIndex - 1,
-                selectedCell: { row: move.row, col: move.col },
-                highlightedNumber: newGrid[move.row][move.col]
+                historyIndex: prev.historyIndex - 1
             };
         });
     }, [game]);
@@ -222,9 +290,7 @@ export const useGameState = () => {
                 grid: newGrid,
                 errorCells,
                 gameCompleted,
-                historyIndex: nextIndex,
-                selectedCell: { row: move.row, col: move.col },
-                highlightedNumber: newGrid[move.row][move.col]
+                historyIndex: nextIndex
             };
         });
     }, [game]);
@@ -238,6 +304,7 @@ export const useGameState = () => {
         solvePuzzle,
         undo,
         redo,
+        toggleIntellectualAssistant,
         canUndo: gameState.historyIndex >= 0,
         canRedo: gameState.historyIndex < gameState.history.length - 1
     };

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { Play, Lightbulb, Eye, RotateCcw, RotateCw, Clock } from 'lucide-react';
 import { Difficulty, DIFFICULTY_SETTINGS } from '@/lib/sudoku';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -17,23 +19,27 @@ interface GameControlsProps {
     canRedo: boolean;
     timer: number;
     gameCompleted: boolean;
+    isIntellectualAssistantEnabled: boolean;
+    onToggleIntellectualAssistant: () => void;
 }
 
 export const GameControls: React.FC<GameControlsProps> = ({
-                                                              difficulty,
-                                                              onDifficultyChange,
-                                                              onNewGame,
-                                                              onHint,
-                                                              onSolve,
-                                                              onUndo,
-                                                              onRedo,
-                                                              canUndo,
-                                                              canRedo,
-                                                              timer,
-                                                              gameCompleted
-                                                          }) => {
+    difficulty,
+    onDifficultyChange,
+    onNewGame,
+    onHint,
+    onSolve,
+    onUndo,
+    onRedo,
+    canUndo,
+    canRedo,
+    timer,
+    gameCompleted,
+    isIntellectualAssistantEnabled,
+    onToggleIntellectualAssistant,
+}) => {
     const { t } = useTranslation();
-    
+
     const formatTime = (seconds: number): string => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -47,14 +53,14 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 <div className="flex items-center justify-center gap-2 text-lg font-mono">
                     <Clock className="w-5 h-5" />
                     <span className={gameCompleted ? 'text-success font-semibold' : ''}>
-            {formatTime(timer)}
-          </span>
+                        {formatTime(timer)}
+                    </span>
                 </div>
                 {gameCompleted && (
                     <p className="text-sm text-success mt-1">{t('game.congratulations')}</p>
                 )}
             </div>
-            
+
             {/* Difficulty Selection */}
             <div className="journal-paper p-4">
                 <label className="block text-sm font-medium mb-2">{t('game.difficultyLevel')}</label>
@@ -71,7 +77,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                     </SelectContent>
                 </Select>
             </div>
-            
+
             {/* Main Controls */}
             <div className="journal-paper p-4 space-y-3">
                 <Button
@@ -81,7 +87,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                     <Play className="w-4 h-4 mr-2" />
                     {t('game.newGame')}
                 </Button>
-                
+
                 <div className="grid grid-cols-2 gap-2">
                     <Button
                         onClick={onHint}
@@ -91,7 +97,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                         <Lightbulb className="w-4 h-4 mr-2" />
                         {t('game.hint')}
                     </Button>
-                    
+
                     <Button
                         onClick={onSolve}
                         className="journal-button outline h-10"
@@ -101,7 +107,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                         {t('game.solve')}
                     </Button>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-2">
                     <Button
                         onClick={onUndo}
@@ -111,7 +117,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                         <RotateCcw className="w-4 h-4 mr-2" />
                         {t('game.undo')}
                     </Button>
-                    
+
                     <Button
                         onClick={onRedo}
                         className="journal-button outline h-10"
@@ -121,6 +127,17 @@ export const GameControls: React.FC<GameControlsProps> = ({
                         {t('game.redo')}
                     </Button>
                 </div>
+            </div>
+            {/* Intellectual Assistant */}
+            <div className="journal-paper p-4 flex items-center space-x-2">
+                <Checkbox
+                    id="intellectual-assistant"
+                    checked={isIntellectualAssistantEnabled}
+                    onCheckedChange={onToggleIntellectualAssistant}
+                />
+                <Label htmlFor="intellectual-assistant" className="text-sm font-medium">
+                    {t('game.intellectualAssistant')}
+                </Label>
             </div>
         </div>
     );

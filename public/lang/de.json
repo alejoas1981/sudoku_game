@@ -13,7 +13,8 @@
     "congratulations": "Glückwunsch! Sudoku gelöst!",
     "selectCell": "Wählen Sie eine Zelle zum Eingeben einer Zahl",
     "cellPosition": "Zelle ({row}, {col})",
-    "difficultyLevel": "Schwierigkeitsgrad"
+    "difficultyLevel": "Schwierigkeitsgrad",
+    "intellectualAssistant": "\uD83D\uDCA1 Intelligenter Assistent"
   },
   "difficulty": {
     "beginner": "Anfänger",

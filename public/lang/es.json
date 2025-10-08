@@ -13,7 +13,8 @@
     "congratulations": "¡Felicidades! ¡Sudoku resuelto!",
     "selectCell": "Selecciona una celda para ingresar un número",
     "cellPosition": "Celda ({row}, {col})",
-    "difficultyLevel": "Nivel de Dificultad"
+    "difficultyLevel": "Nivel de Dificultad",
+    "intellectualAssistant": "\uD83D\uDCA1 Asistente Inteligente"
   },
   "difficulty": {
     "beginner": "Principiante",

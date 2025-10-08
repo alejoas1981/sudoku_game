@@ -13,7 +13,8 @@
     "congratulations": "Поздравляем! Судоку решено!",
     "selectCell": "Выберите клетку для ввода числа",
     "cellPosition": "Клетка ({row}, {col})",
-    "difficultyLevel": "Уровень сложности"
+    "difficultyLevel": "Уровень сложности",
+    "intellectualAssistant": "\uD83D\uDCA1 Интеллектуальный помощник"
   },
   "difficulty": {
     "beginner": "Новичок",

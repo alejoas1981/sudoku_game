@@ -13,7 +13,8 @@
     "congratulations": "Félicitations ! Sudoku résolu !",
     "selectCell": "Sélectionnez une cellule pour saisir un nombre",
     "cellPosition": "Cellule ({row}, {col})",
-    "difficultyLevel": "Niveau de Difficulté"
+    "difficultyLevel": "Niveau de Difficulté",
+    "intellectualAssistant": "\uD83D\uDCA1 Assistant Intelligent"
   },
   "difficulty": {
     "beginner": "Débutant",
