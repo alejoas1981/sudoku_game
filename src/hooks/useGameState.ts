@@ -7,7 +7,9 @@ import {
     saveDifficulty,
     loadDifficulty,
     updateGameStats,
-    clearSavedGame
+    clearSavedGame,
+    saveIntellectualAssistantEnabled,
+    loadIntellectualAssistantEnabled
 } from '@/lib/storage';
 
 export interface GameMove {
@@ -38,6 +40,7 @@ export interface GameState {
 const createInitialState = (game: SudokuGame): GameState => {
     const savedGame = loadGameFromLocalStorage();
     const savedDifficulty = loadDifficulty() || Difficulty.BEGINNER;
+    const isIntellectualAssistantEnabled = loadIntellectualAssistantEnabled();
 
     const getInitialState = () => {
         if (savedGame && !savedGame.gameCompleted) {
@@ -49,7 +52,7 @@ const createInitialState = (game: SudokuGame): GameState => {
                 errorCells: [],
                 intellectualErrorCells: [],
                 hintCells: [],
-                isIntellectualAssistantEnabled: false,
+                isIntellectualAssistantEnabled,
             };
         } else {
             const { puzzle, solution } = game.generatePuzzle(savedDifficulty);
@@ -69,7 +72,7 @@ const createInitialState = (game: SudokuGame): GameState => {
                 gameCompleted: false,
                 history: [],
                 historyIndex: -1,
-                isIntellectualAssistantEnabled: false,
+                isIntellectualAssistantEnabled,
             };
         }
     };
@@ -108,7 +111,8 @@ export const useGameState = () => {
         const { puzzle, solution } = game.generatePuzzle(difficulty);
         const givenCells = puzzle.map(row => row.map(cell => cell !== 0));
         clearSavedGame();
-        setGameState({
+        setGameState(prev => ({
+            ...prev,
             grid: puzzle,
             solution,
             givenCells,
@@ -123,16 +127,19 @@ export const useGameState = () => {
             gameCompleted: false,
             history: [],
             historyIndex: -1,
-            isIntellectualAssistantEnabled: false,
-        });
+        }));
     }, [game, gameState.difficulty]);
 
     const toggleIntellectualAssistant = useCallback(() => {
-        setGameState(prev => ({
-            ...prev,
-            isIntellectualAssistantEnabled: !prev.isIntellectualAssistantEnabled,
-            intellectualErrorCells: [], // Clear errors when toggling
-        }));
+        setGameState(prev => {
+            const newIsEnabled = !prev.isIntellectualAssistantEnabled;
+            saveIntellectualAssistantEnabled(newIsEnabled);
+            return {
+                ...prev,
+                isIntellectualAssistantEnabled: newIsEnabled,
+                intellectualErrorCells: [], // Clear errors when toggling
+            };
+        });
     }, []);
 
     const selectCell = useCallback((row: number, col: number) => {

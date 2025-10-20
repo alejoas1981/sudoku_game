@@ -10,7 +10,8 @@ const STORAGE_KEYS = {
     DIFFICULTY: 'sudoku_difficulty',
     BEST_TIMES: 'sudoku_best_times',
     GAMES_PLAYED: 'sudoku_games_played',
-    SETTINGS: 'sudoku_settings'
+    SETTINGS: 'sudoku_settings',
+    INTELLECTUAL_ASSISTANT_ENABLED: 'sudoku_intellectual_assistant_enabled'
 } as const;
 
 // Keys for sessionStorage
@@ -107,6 +108,24 @@ export const saveLanguage = (language: Language): boolean => {
 export const loadLanguage = (): Language | null => {
     const stored = safeGetItem(STORAGE_KEYS.LANGUAGE, localStorage);
     return stored as Language | null;
+};
+
+// Intellectual Assistant preference
+export const saveIntellectualAssistantEnabled = (isEnabled: boolean): boolean => {
+    return safeSetItem(STORAGE_KEYS.INTELLECTUAL_ASSISTANT_ENABLED, JSON.stringify(isEnabled), localStorage);
+};
+
+export const loadIntellectualAssistantEnabled = (): boolean => {
+    const stored = safeGetItem(STORAGE_KEYS.INTELLECTUAL_ASSISTANT_ENABLED, localStorage);
+    if (stored === null) {
+        return false; // Default to false
+    }
+    try {
+        return JSON.parse(stored);
+    } catch (error) {
+        console.warn('Failed to parse intellectual assistant setting:', error);
+        return false;
+    }
 };
 
 // Difficulty preference
@@ -281,3 +300,4 @@ export const clearAllData = (): boolean => {
         return false;
     }
 };
+''
