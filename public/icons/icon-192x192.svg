@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-192x192</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <rect fill="#F0F0F0" x="0" y="0" width="192" height="192" rx="32"></rect>
+            <path d="M48,32 L144,32 L144,160 L48,160 L48,32 Z" stroke="#333333" stroke-width="4"></path>
+            <line x1="32" y1="80" x2="160" y2="80" stroke="#333333" stroke-width="4"></line>
+            <line x1="32" y1="112" x2="160" y2="112" stroke="#333333" stroke-width="4"></line>
+            <line x1="80" y1="32" x2="80" y2="160" stroke="#333333" stroke-width="4"></line>
+            <line x1="112" y1="32" x2="112" y2="160" stroke="#333333" stroke-width="4"></line>
+            <line x1="32" y1="64" x2="160" y2="64" stroke="#999999" stroke-width="2"></line>
+            <line x1="32" y1="96" x2="160" y2="96" stroke="#999999" stroke-width="2"></line>
+            <line x1="32" y1="128" x2="160" y2="128" stroke="#999999" stroke-width="2"></line>
+            <line x1="64" y1="32" x2="64" y2="160" stroke="#999999" stroke-width="2"></line>
+            <line x1="96" y1="32" x2="96" y2="160" stroke="#999999" stroke-width="2"></line>
+            <line x1="128" y1="32" x2="128" y2="160" stroke="#999999" stroke-width="2"></line>
+        </g>
+    </g>
+</svg>
