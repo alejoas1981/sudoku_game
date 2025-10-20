@@ -49,8 +49,8 @@ const createInitialState = (game: SudokuGame): GameState => {
                 selectedCell: null,
                 highlightedCells: [],
                 highlightedNumber: null,
-                errorCells: [],
-                intellectualErrorCells: [],
+                errorCells: savedGame.errorCells || [],
+                intellectualErrorCells: savedGame.intellectualErrorCells || [],
                 hintCells: [],
                 isIntellectualAssistantEnabled,
             };

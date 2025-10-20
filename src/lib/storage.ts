@@ -30,6 +30,8 @@ export interface SavedGame {
     gameCompleted: boolean;
     history: GameMove[];
     historyIndex: number;
+    errorCells: { row: number; col: number }[];
+    intellectualErrorCells: { row: number; col: number }[];
     savedAt: number;
 }
 
@@ -149,6 +151,8 @@ export const saveGameToLocalStorage = (gameState: GameState): boolean => {
         gameCompleted: gameState.gameCompleted,
         history: gameState.history,
         historyIndex: gameState.historyIndex,
+        errorCells: gameState.errorCells,
+        intellectualErrorCells: gameState.intellectualErrorCells,
         savedAt: Date.now()
     };
     
