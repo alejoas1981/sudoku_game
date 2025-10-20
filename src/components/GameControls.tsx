@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Play, Lightbulb, Eye, RotateCcw, RotateCw, Clock } from 'lucide-react';
 import { Difficulty, DIFFICULTY_SETTINGS } from '@/lib/sudoku';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface GameControlsProps {
     difficulty: Difficulty;

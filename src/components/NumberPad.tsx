@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Eraser } from 'lucide-react';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface NumberPadProps {
     onNumberSelect: (number: number) => void;

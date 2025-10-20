@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Globe } from 'lucide-react';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from '@/context/TranslationContext';
 import { AVAILABLE_LANGUAGES, Language } from '@/lib/i18n';
 
 export const LanguageSelector: React.FC = () => {

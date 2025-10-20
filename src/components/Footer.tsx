@@ -1,6 +1,6 @@
 import React from 'react';
 import { LanguageSelector } from '@/components/LanguageSelector';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from '@/context/TranslationContext';
 
 export const Footer: React.FC = () => {
     const { t } = useTranslation();

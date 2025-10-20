@@ -5,7 +5,7 @@ import { NumberPad } from '@/components/NumberPad';
 import { Footer } from '@/components/Footer';
 import { ChatGPTHelper } from '@/components/ChatGPTHelper';
 import { useGameState } from '@/hooks/useGameState';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslation } from '@/context/TranslationContext'; // Updated import
 import { Difficulty } from '@/lib/sudoku';
 import { initializeAPI, cleanupAPI } from '@/lib/api';
 
