@@ -1,20 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>icon-192x192</title>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g>
-            <rect fill="#F0F0F0" x="0" y="0" width="192" height="192" rx="32"></rect>
-            <path d="M48,32 L144,32 L144,160 L48,160 L48,32 Z" stroke="#333333" stroke-width="4"></path>
-            <line x1="32" y1="80" x2="160" y2="80" stroke="#333333" stroke-width="4"></line>
-            <line x1="32" y1="112" x2="160" y2="112" stroke="#333333" stroke-width="4"></line>
-            <line x1="80" y1="32" x2="80" y2="160" stroke="#333333" stroke-width="4"></line>
-            <line x1="112" y1="32" x2="112" y2="160" stroke="#333333" stroke-width="4"></line>
-            <line x1="32" y1="64" x2="160" y2="64" stroke="#999999" stroke-width="2"></line>
-            <line x1="32" y1="96" x2="160" y2="96" stroke="#999999" stroke-width="2"></line>
-            <line x1="32" y1="128" x2="160" y2="128" stroke="#999999" stroke-width="2"></line>
-            <line x1="64" y1="32" x2="64" y2="160" stroke="#999999" stroke-width="2"></line>
-            <line x1="96" y1="32" x2="96" y2="160" stroke="#999999" stroke-width="2"></line>
-            <line x1="128" y1="32" x2="128" y2="160" stroke="#999999" stroke-width="2"></line>
-        </g>
-    </g>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="japaneseBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F5F5DC"/> <stop offset="100%" stop-color="#FFF8E1"/> </linearGradient>
+        <filter id="subtleShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.08"/>
+        </filter>
+    </defs>
+
+    <rect x="0" y="0" width="512" height="512" fill="url(#japaneseBackground)"/>
+
+    <rect x="40" y="40" width="432" height="432" rx="15" fill="#FFFFFF" filter="url(#subtleShadow)"/>
+
+    <rect x="40" y="40" width="432" height="432" rx="15" stroke="#37474F" stroke-width="4"/>
+
+    <line x1="40" y1="184" x2="472" y2="184" stroke="#37474F" stroke-width="4"/>
+    <line x1="40" y1="328" x2="472" y2="328" stroke="#37474F" stroke-width="4"/>
+    <line x1="184" y1="40" x2="184" y2="472" stroke="#37474F" stroke-width="4"/>
+    <line x1="328" y1="40" x2="328" y2="472" stroke="#37474F" stroke-width="4"/>
+
+    <line x1="40" y1="88" x2="472" y2="88" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="40" y1="136" x2="472" y2="136" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="40" y1="232" x2="472" y2="232" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="40" y1="280" x2="472" y2="280" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="40" y1="376" x2="472" y2="376" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="40" y1="424" x2="472" y2="424" stroke="#CFD8DC" stroke-width="1.5"/>
+
+    <line x1="88" y1="40" x2="88" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="136" y1="40" x2="136" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="232" y1="40" x2="232" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="280" y1="40" x2="280" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="376" y1="40" x2="376" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+    <line x1="424" y1="40" x2="424" y2="472" stroke="#CFD8DC" stroke-width="1.5"/>
+
+    <text x="64" y="64" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">5</text>
+    <text x="112" y="112" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">9</text>
+    <text x="160" y="64" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">3</text>
+
+    <text x="256" y="256" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">1</text>
+    <text x="304" y="304" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">7</text>
+    <text x="352" y="208" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">2</text>
+
+    <text x="400" y="448" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">8</text>
+    <text x="448" y="352" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">4</text>
+    <text x="64" y="400" font-family="'Zen Old Mincho', serif" font-size="50" fill="#263238" font-weight="bold" text-anchor="middle" dominant-baseline="central">6</text>
+
+    <text x="492" y="492" font-family="'Meiryo', sans-serif" font-size="120" fill="#78909C" opacity="0.1" text-anchor="end" dominant-baseline="alphabetic" transform="rotate(5, 492, 492)">数</text>
 </svg>
