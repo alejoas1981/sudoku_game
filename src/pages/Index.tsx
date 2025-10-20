@@ -5,9 +5,11 @@ import { NumberPad } from '@/components/NumberPad';
 import { Footer } from '@/components/Footer';
 import { ChatGPTHelper } from '@/components/ChatGPTHelper';
 import { useGameState } from '@/hooks/useGameState';
-import { useTranslation } from '@/context/TranslationContext'; // Updated import
+import { useTranslation } from '@/context/TranslationContext';
 import { Difficulty } from '@/lib/sudoku';
 import { initializeAPI, cleanupAPI } from '@/lib/api';
+import { register } from '@/lib/serviceWorkerRegistration';
+import { toast } from 'sonner';
 
 const Index = () => {
     const { t, loading } = useTranslation();
@@ -25,25 +27,33 @@ const Index = () => {
         toggleIntellectualAssistant
     } = useGameState();
 
-    // Initialize API and service worker
     useEffect(() => {
         initializeAPI();
 
-        // Register service worker for PWA
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
-        }
+        register(registration => {
+            toast('A new version is available!', {
+                action: {
+                    label: 'Update',
+                    onClick: () => {
+                        const waitingWorker = registration.waiting;
+                        if (waitingWorker) {
+                            waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+                            waitingWorker.addEventListener('statechange', event => {
+                                if ((event.target as ServiceWorker).state === 'activated') {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    },
+                },
+                duration: Infinity,
+                dismissible: false,
+            });
+        });
 
         return () => cleanupAPI();
     }, []);
 
-    // Show loading state while translations are loading
     if (loading) {
         return (
             <div className="min-h-screen bg-background flex items-center justify-center">
@@ -76,15 +86,12 @@ const Index = () => {
     return (
         <div className="min-h-screen bg-background p-4">
             <div className="max-w-6xl mx-auto">
-                {/* Header */}
                 <header className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-primary mb-2">{t('game.title')}</h1>
                     <p className="text-muted-foreground">{t('game.subtitle')}</p>
                 </header>
 
-                {/* Main Game Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Game Controls - Left Side */}
                     <div className="lg:order-1">
                         <GameControls
                             difficulty={gameState.difficulty}
@@ -106,7 +113,6 @@ const Index = () => {
                         </div>
                     </div>
 
-                    {/* Sudoku Grid - Center */}
                     <div className="lg:order-2 flex flex-col items-center">
                         <SudokuGrid
                             grid={gameState.grid}
@@ -122,7 +128,6 @@ const Index = () => {
                         />
                     </div>
 
-                    {/* Number Pad - Right Side */}
                     <div className="lg:order-3">
                         <NumberPad
                             onNumberSelect={handleNumberSelect}
@@ -131,7 +136,6 @@ const Index = () => {
                     </div>
                 </div>
 
-                {/* Footer with language selector */}
                 <Footer />
             </div>
         </div>
