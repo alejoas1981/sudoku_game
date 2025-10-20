@@ -6,98 +6,78 @@
 
 @layer base {
     :root {
-        /* Light gray journal palette */
-        --background: 42 10% 96%;           /* Warm off-white paper */
-        --foreground: 0 0% 20%;           /* Soft dark gray ink */
-
-        --card: 0 0% 94%;                 /* Slightly darker card */
+        /* Light Theme Palette */
+        --background: 42 10% 96%;
+        --foreground: 0 0% 20%;
+        --card: 0 0% 94%;
         --card-foreground: 0 0% 20%;
-
         --popover: 0 0% 94%;
         --popover-foreground: 0 0% 20%;
-
-        --primary: 0 0% 40%;              /* Medium gray */
+        --primary: 0 0% 40%;
         --primary-foreground: 0 0% 97%;
-
-        --secondary: 0 0% 88%;            /* Light gray lines */
+        --secondary: 0 0% 88%;
         --secondary-foreground: 0 0% 35%;
-
-        --muted: 0 0% 90%;                /* Subtle paper texture */
+        --muted: 0 0% 90%;
         --muted-foreground: 0 0% 45%;
-
-        --accent: 0 0% 85%;               /* Soft highlight gray */
+        --accent: 0 0% 85%;
         --accent-foreground: 0 0% 25%;
-
-        --destructive: 0 75% 55%;         /* Error red remains */
+        --destructive: 0 75% 55%;
         --destructive-foreground: 0 0% 97%;
-
-        --color-graphite-dark: 0, 0%, 51%;
-
-        --success: 142 76% 36%;           /* Success green remains */
+        --success: 142 76% 36%;
         --success-foreground: 0 0% 97%;
-
-        --warning: 45 93% 47%;            /* Warning amber remains */
+        --warning: 45 93% 47%;
         --warning-foreground: 0 0% 20%;
-
-        --border: 0 0% 80%;               /* Soft gray lines */
+        --border: 0 0% 80%;
         --input: 0 0% 80%;
         --ring: 0 0% 40%;
-
-        --grid-line: 0 0% 70%;            /* Sudoku grid lines */
-        --grid-line-thick: 0 0% 50%;      /* Thick block separators */
-        --grid-selected: 0 0% 88%;        /* Selected cell highlight */
-        --grid-error: 0 75% 92%;          /* Error cell background */
-        --grid-hint: 0 0% 92%;            /* Hint cell background */
-
-        --shadow-soft: 0 0% 20% 0.1;
-        --shadow-paper: 0 0% 20% 0.05;
-
         --radius: 0.375rem;
 
-        --sidebar-background: 0 0% 97%;
-        --sidebar-foreground: 0 0% 30%;
-        --sidebar-primary: 0 0% 40%;
-        --sidebar-primary-foreground: 0 0% 97%;
-        --sidebar-accent: 0 0% 96%;
-        --sidebar-accent-foreground: 0 0% 30%;
-        --sidebar-border: 0 0% 90%;
-        --sidebar-ring: 0 0% 60%;
+        /* Custom Game Colors */
+        --grid-line: 0 0% 70%;
+        --grid-line-thick: 0 0% 50%;
+        --grid-selected: 0 0% 88%;
+        --grid-error: 0 75% 92%;
+        --grid-hint: 142 76% 92%;
+        --shadow-soft: 0 0% 20% 0.1;
+        --shadow-paper: 0 0% 20% 0.05;
     }
 
     .dark {
-        --background: 222 5% 10%;
-        --foreground: 0 0% 90%;
+        /* Final Softer Dark Theme (Slate) */
+        --background: 220 10% 15%;
+        --foreground: 220 10% 85%;
+        --card: 220 10% 22%;
+        --card-foreground: 220 10% 85%;
+        --popover: 220 10% 22%;
+        --popover-foreground: 220 10% 85%;
+        --primary: 220 10% 90%;
+        --primary-foreground: 220 10% 15%;
+        --secondary: 220 10% 30%;
+        --secondary-foreground: 220 10% 90%;
+        --muted: 220 10% 30%;
+        --muted-foreground: 220 10% 70%;
+        --accent: 220 10% 30%;
+        --accent-foreground: 220 10% 90%;
+        --destructive: 0 65% 45%;
+        --destructive-foreground: 0 0% 95%;
+        --success: 142 60% 35%;
+        --success-foreground: 0 0% 95%;
+        --warning: 45 75% 45%;
+        --warning-foreground: 0 0% 95%;
+        --border: 220 10% 35%;
+        --input: 220 10% 35%;
+        --ring: 220 10% 80%;
 
-        --card: 222.2 5% 15%;
-        --card-foreground: 0 0% 90%;
-
-        --primary: 0 0% 90%;
-        --primary-foreground: 222.2 5% 15%;
-
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 0 0% 90%;
-
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 0 0% 90%;
-
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-        --sidebar-background: 240 5.9% 10%;
-        --sidebar-foreground: 240 4.8% 95.9%;
-        --sidebar-primary: 224.3 76.3% 48%;
-        --sidebar-primary-foreground: 0 0% 100%;
-        --sidebar-accent: 240 3.7% 15.9%;
-        --sidebar-accent-foreground: 240 4.8% 95.9%;
-        --sidebar-border: 240 3.7% 15.9%;
-        --sidebar-ring: 217.2 91.2% 59.8%;
+        /* Custom Game Colors */
+        --grid-line: 220 10% 40%;
+        --grid-line-thick: 220 10% 55%;
+        --grid-selected: 220 10% 32%;
+        --grid-error: 0 65% 35%;
+        --grid-hint: 142 60% 25%;
+        --shadow-soft: 0 0% 0% 0.1;
+        --shadow-paper: 0 0% 0% 0.05;
     }
-}
 
-@layer base {
     * {
         @apply border-border;
     }
@@ -106,20 +86,9 @@
         @apply bg-background text-foreground font-inter;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
         background-image:
-                radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
-                radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
+            radial-gradient(hsl(var(--foreground) / 0.01) 1px, transparent 1px),
+            radial-gradient(hsl(var(--foreground) / 0.01) 1px, transparent 1px);
         background-size: 4px 4px, 3px 3px;
-        color: hsl(0 0% 20%);
-        font-family: 'Inter', sans-serif;
-        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    }
-
-    body.dark {
-        background-image:
-                radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-        background-size: 4px 4px, 3px 3px;
-        color: hsl(0 0% 90%);
     }
 
     .sudoku-grid {
@@ -131,7 +100,6 @@
         @apply w-full h-full flex items-center justify-center text-lg font-medium border border-grid-line bg-card transition-all duration-200;
         aspect-ratio: 1 / 1;
         font-family: 'JetBrains Mono', monospace;
-        background: hsl(var(--card));
     }
 
     .sudoku-cell:hover {
@@ -143,8 +111,8 @@
     }
 
     .sudoku-cell.highlight-number {
-        background-color: hsl(var(--color-graphite-dark)) !important;
-        color: hsl(var(--background)) !important;
+        background-color: hsl(var(--grid-selected)) !important;
+        color: hsl(var(--foreground)) !important;
     }
 
     .sudoku-cell.selected {
@@ -152,15 +120,19 @@
     }
 
     .sudoku-cell.error {
-        @apply bg-grid-error border-destructive text-destructive;
+        @apply bg-grid-error border-destructive text-destructive-foreground;
     }
 
     .sudoku-cell.hint {
-        @apply bg-grid-hint border-success text-success;
+        @apply bg-grid-hint border-success text-success-foreground;
     }
 
     .sudoku-cell.given {
-        @apply font-semibold text-primary bg-secondary/30;
+        @apply font-semibold text-primary;
+    }
+
+    .dark .sudoku-cell.given {
+        @apply font-semibold text-primary;
     }
 
     .sudoku-cell.thick-border-right {
@@ -169,53 +141,5 @@
 
     .sudoku-cell.thick-border-bottom {
         @apply border-b-2 border-b-grid-line-thick;
-    }
-
-    .journal-button {
-        @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
-        box-shadow: 0 1px 2px 0 hsl(var(--shadow-soft));
-    }
-
-    .journal-button.primary {
-        @apply bg-primary text-primary-foreground hover:bg-primary/90;
-    }
-
-    .journal-button.secondary {
-        @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
-    }
-
-    .journal-button.outline {
-        @apply border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground;
-    }
-
-    .journal-button.ghost {
-        @apply text-primary hover:bg-accent hover:text-accent-foreground;
-    }
-
-    .journal-paper {
-        @apply bg-card border border-border rounded-lg shadow-sm;
-        box-shadow: 0 1px 3px 0 hsl(var(--shadow-paper)), 0 1px 2px 0 hsl(var(--shadow-paper));
-    }
-
-    .journal-button {
-        @apply opacity-100 transition-all duration-200;
-        min-height: 2.5rem;
-    }
-
-    .journal-button:not(:disabled):hover {
-        @apply scale-[1.02] shadow-md;
-    }
-
-    .journal-button:disabled {
-        @apply opacity-50 cursor-not-allowed;
-    }
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
     }
 }
