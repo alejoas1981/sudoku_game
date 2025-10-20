@@ -29,6 +29,10 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
 }) => {
     const isStandardError = (row: number, col: number) =>
         errorCells.some(cell => cell.row === row && cell.col === col);
+    
+    const DOUBLE_TAP_DELAY = 300; // max time between taps in ms
+    
+    const lastTapRef = React.useRef<{ row: number; col: number; time: number } | null>(null);
 
     const isIntellectualError = (row: number, col: number) =>
         intellectualErrorCells.some(cell => cell.row === row && cell.col === col);
@@ -59,6 +63,22 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
             onCellChange(row, col, 0);
         }
     };
+    
+    const handleCellTap = (row: number, col: number) => {
+        const now = Date.now();
+        if (
+            lastTapRef.current &&
+            lastTapRef.current.row === row &&
+            lastTapRef.current.col === col &&
+            now - lastTapRef.current.time < DOUBLE_TAP_DELAY
+        ) {
+            onCellChange(row, col, 0); // double tap detected
+            lastTapRef.current = null;
+        } else {
+            lastTapRef.current = { row, col, time: now };
+            onCellClick(row, col); // single tap
+        }
+    };
 
     return (
         <div className="sudoku-grid w-full max-w-md mx-auto aspect-square">
@@ -82,6 +102,7 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
                             )}
                             onClick={() => onCellClick(rowIndex, colIndex)}
                             onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
+                            onTouchStart={() => handleCellTap(rowIndex, colIndex)}
                             tabIndex={0}
                             role="gridcell"
                             aria-label={`Cell ${rowIndex + 1}, ${colIndex + 1}`}
