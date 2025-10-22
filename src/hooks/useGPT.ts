@@ -1,21 +1,13 @@
 import { useState } from "react";
+import { GameState } from './useGameState'; // Import the correct GameState type
 
-interface GameContext {
-    difficulty: string;
-    progress: number;
-    timer: number;
-    gameCompleted: boolean;
-    errorCount: number;
-    filledCells: number;
-    totalCells: number;
-}
-
+// The context will now be the entire GameState
 export const useGPT = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const API_BASE_URL = 'https://api-15-puzzle.onrender.com';
     
-    const sendMessage = async (message: string, gameContext: GameContext) => {
+    const sendMessage = async (message: string, gameContext: Partial<GameState>) => {
         if (!message.trim()) return null;
         
         setIsLoading(true);
@@ -27,6 +19,7 @@ export const useGPT = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
+                // Send the full game context
                 body: JSON.stringify({ message, gameContext })
             });
             

@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { HelpCircle, Bot, MessageCircle } from 'lucide-react';
 import { useTranslation } from '@/context/TranslationContext';
 import { useGPT } from '@/hooks/useGPT';
+import { GameState } from '@/hooks/useGameState';
 
 interface ChatGPTHelperProps {
-    gameState: any;
+    gameState: GameState;
 }
 
 export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
@@ -16,26 +17,32 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
     const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string }>>([]);
     const [input, setInput] = useState('');
     
-    // Get game context for AI assistant
     const getGameContext = () => {
-        const { grid, difficulty, timer, gameCompleted, errorCells } = gameState;
+        const { 
+            grid, 
+            difficulty, 
+            timer, 
+            gameCompleted, 
+            errorCells, 
+            givenCells, 
+            solution, 
+            selectedCell 
+        } = gameState;
         
-        // Count filled cells
         const filledCells = grid.flat().filter((cell: number) => cell !== 0).length;
         const totalCells = 81;
         const progress = Math.round((filledCells / totalCells) * 100);
         
-        // Count errors
-        const errorCount = errorCells.length;
-        
         return {
+            grid,
+            givenCells,
+            solution,
+            selectedCell,
             difficulty,
             progress,
             timer,
             gameCompleted,
-            errorCount,
-            filledCells,
-            totalCells
+            errorCount: errorCells.length,
         };
     };
     
@@ -51,8 +58,6 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
         const reply = await sendToGPT(message, gameContext);
         if (reply) setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     };
-    
-    // Simulate ChatGPT responses for demo
     
     const quickTips = [
         "What strategies should I use?",
@@ -85,7 +90,6 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                 </DialogHeader>
                 
                 <div className="flex-1 min-h-0 overflow-y-auto space-y-4 p-4 border rounded-lg bg-muted/20" style={{ WebkitOverflowScrolling: 'touch' }}>
-                    {/* Messages */}
                     <div className="flex-1 overflow-y-auto space-y-4 p-4 border rounded-lg bg-muted/20 min-h-[300px]">
                         {messages.length === 0 && (
                             <div className="text-center text-muted-foreground">
@@ -118,7 +122,6 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                         )}
                     </div>
                     
-                    {/* Quick tips */}
                     {messages.length === 0 && (
                         <div className="p-4 space-y-2">
                             <p className="text-sm text-muted-foreground">Quick questions:</p>
@@ -139,7 +142,6 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                         </div>
                     )}
                     
-                    {/* Input */}
                     <div className="flex gap-2 pt-4">
                         <input
                             type="text"
@@ -164,6 +166,3 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
         </Dialog>
     );
 };
-
-
-
