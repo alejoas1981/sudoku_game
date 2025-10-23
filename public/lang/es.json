@@ -25,10 +25,21 @@
   },
   "footer": {
     "language": "Idioma",
-    "copyright": "© 2024 Sudoku Journal. Hecho con ❤️ para amantes de los rompecabezas."
+    "copyright": "© 2024 Sudoku Journal. Hecho con ❤️ para amantes de los rompecabezas.",
+    "theme": {
+        "title": "Tema",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Sistema"
+    }
   },
   "help": {
     "title": "Ayuda",
-    "askAssistant": "Preguntar al Asistente"
+    "askAssistant": "Preguntar al Asistente",
+    "description": "¡Pregúntame cualquier cosa sobre estrategias y técnicas de Sudoku, u obtén pistas para tu juego actual!"
+  },
+  "chat": {
+    "thinking": "Pensando...",
+    "send": "Enviar"
   }
 }

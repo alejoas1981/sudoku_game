@@ -85,7 +85,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                         {t('help.title')}
                     </DialogTitle>
                     <DialogDescription>
-                        Ask me anything about Sudoku strategies, techniques, or get hints for your current game!
+                        {t('help.description')}
                     </DialogDescription>
                 </DialogHeader>
                 
@@ -115,7 +115,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                                 <div className="bg-card border p-3 rounded-lg">
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-                                        Thinking...
+                                        {t('chat.thinking')}
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                             size="sm"
                             className="journal-button primary"
                         >
-                            Send
+                            {t('chat.send')}
                         </Button>
                     </div>
                 </div>

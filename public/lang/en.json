@@ -25,10 +25,21 @@
   },
   "footer": {
     "language": "Language",
-    "copyright": "© 2024 Sudoku Journal. Made with ❤️ for puzzle lovers."
+    "copyright": "© 2024 Sudoku Journal. Made with ❤️ for puzzle lovers.",
+    "theme": {
+        "title": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    }
   },
   "help": {
     "title": "Help",
-    "askAssistant": "Ask Assistant"
+    "askAssistant": "Ask Assistant",
+    "description": "Ask me anything about Sudoku strategies, techniques, or get hints for your current game!"
+  },
+  "chat": {
+    "thinking": "Thinking...",
+    "send": "Send"
   }
 }

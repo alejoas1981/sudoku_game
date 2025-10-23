@@ -28,10 +28,21 @@ export interface Translation {
     footer: {
         language: string;
         copyright: string;
+        theme: {
+            title: string;
+            light: string;
+            dark: string;
+            system: string;
+        };
     };
     help: {
         title: string;
         askAssistant: string;
+        description: string;
+    };
+    chat: {
+        thinking: string;
+        send: string;
     };
 }
 

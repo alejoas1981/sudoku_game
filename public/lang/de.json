@@ -25,10 +25,21 @@
   },
   "footer": {
     "language": "Sprache",
-    "copyright": "© 2024 Sudoku Journal. Mit ❤️ für Rätselliebhaber gemacht."
+    "copyright": "© 2024 Sudoku Journal. Mit ❤️ für Rätselliebhaber gemacht.",
+    "theme": {
+        "title": "Thema",
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "System"
+    }
   },
   "help": {
     "title": "Hilfe",
-    "askAssistant": "Assistent fragen"
+    "askAssistant": "Assistent fragen",
+    "description": "Fragen Sie mich alles über Sudoku-Strategien, -Techniken oder erhalten Sie Hinweise für Ihr aktuelles Spiel!"
+  },
+  "chat": {
+    "thinking": "Denke nach...",
+    "send": "Senden"
   }
 }

@@ -49,25 +49,25 @@ export const Footer: React.FC = () => {
 
                     <Select value={theme} onValueChange={(value) => setTheme(value as "light" | "dark" | "system")}>
                         <SelectTrigger className="w-32 h-8 text-xs">
-                            <SelectValue />
+                            <SelectValue placeholder={t('footer.theme.title')} />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="light">
                                 <div className="flex items-center gap-2">
                                     <Sun className="w-4 h-4" />
-                                    <span>Light</span>
+                                    <span>{t('footer.theme.light')}</span>
                                 </div>
                             </SelectItem>
                             <SelectItem value="dark">
                                 <div className="flex items-center gap-2">
                                     <Moon className="w-4 h-4" />
-                                    <span>Dark</span>
+                                    <span>{t('footer.theme.dark')}</span>
                                 </div>
                             </SelectItem>
                             <SelectItem value="system">
                                 <div className="flex items-center gap-2">
                                     <Laptop className="w-4 h-4" />
-                                    <span>System</span>
+                                    <span>{t('footer.theme.system')}</span>
                                 </div>
                             </SelectItem>
                         </SelectContent>
