@@ -6,6 +6,7 @@ import { HelpCircle, Bot, MessageCircle } from 'lucide-react';
 import { useTranslation } from '@/context/TranslationContext';
 import { useGPT } from '@/hooks/useGPT';
 import { GameState } from '@/hooks/useGameState';
+import { Translation } from '@/lib/i18n';
 
 interface ChatGPTHelperProps {
     gameState: GameState;
@@ -59,12 +60,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
         if (reply) setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     };
     
-    const quickTips = [
-        "What strategies should I use?",
-        "I'm stuck, what should I do?",
-        "How do I solve this faster?",
-        "Help me understand Sudoku rules"
-    ];
+    const quickTipKeys: Array<keyof Translation['chat']['quickTips']> = ['strategy', 'stuck', 'faster', 'rules'];
     
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -94,7 +90,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                         {messages.length === 0 && (
                             <div className="text-center text-muted-foreground">
                                 <Bot className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                                <p>Hi! I'm your Sudoku assistant. Ask me anything about strategies or get help with your current puzzle!</p>
+                                <p>{t('chat.welcome')}</p>
                             </div>
                         )}
                         
@@ -124,20 +120,23 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                     
                     {messages.length === 0 && (
                         <div className="p-4 space-y-2">
-                            <p className="text-sm text-muted-foreground">Quick questions:</p>
+                            <p className="text-sm text-muted-foreground">{t('chat.quickQuestions')}</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                {quickTips.map((tip, index) => (
-                                    <Button
-                                        key={index}
-                                        variant="outline"
-                                        size="sm"
-                                        className="justify-start text-left h-auto py-2 px-3"
-                                        onClick={() => handleSend(tip)}
-                                    >
-                                        <MessageCircle className="w-3 h-3 mr-2 flex-shrink-0" />
-                                        <span className="text-xs">{tip}</span>
-                                    </Button>
-                                ))}
+                                {quickTipKeys.map((tipKey, index) => {
+                                    const tipText = t(`chat.quickTips.${tipKey}`);
+                                    return (
+                                        <Button
+                                            key={index}
+                                            variant="outline"
+                                            size="sm"
+                                            className="justify-start text-left h-auto py-2 px-3"
+                                            onClick={() => handleSend(tipText)}
+                                        >
+                                            <MessageCircle className="w-3 h-3 mr-2 flex-shrink-0" />
+                                            <span className="text-xs">{tipText}</span>
+                                        </Button>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
@@ -148,7 +147,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend(input)}
-                            placeholder="Ask about Sudoku strategies, rules, or get help..."
+                            placeholder={t('chat.placeholder')}
                             className="flex-1 px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-background"
                             disabled={gptLoading}
                         />

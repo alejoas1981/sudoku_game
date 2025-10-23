@@ -40,6 +40,15 @@
   },
   "chat": {
     "thinking": "Thinking...",
-    "send": "Send"
+    "send": "Send",
+    "welcome": "Hi! I'm your Sudoku assistant. Ask me anything about strategies or get help with your current puzzle!",
+    "placeholder": "Ask about Sudoku strategies, rules, or get help...",
+    "quickQuestions": "Quick questions:",
+    "quickTips": {
+        "strategy": "What strategies should I use?",
+        "stuck": "I'm stuck, what should I do?",
+        "faster": "How do I solve this faster?",
+        "rules": "Help me understand Sudoku rules"
+    }
   }
 }

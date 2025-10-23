@@ -43,6 +43,15 @@ export interface Translation {
     chat: {
         thinking: string;
         send: string;
+        welcome: string;
+        placeholder: string;
+        quickQuestions: string;
+        quickTips: {
+            strategy: string;
+            stuck: string;
+            faster: string;
+            rules: string;
+        };
     };
 }
 

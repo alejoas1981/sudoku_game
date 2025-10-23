@@ -40,6 +40,15 @@
   },
   "chat": {
     "thinking": "Pensando...",
-    "send": "Enviar"
+    "send": "Enviar",
+    "welcome": "¡Hola! Soy tu asistente de Sudoku. ¡Pregúntame cualquier cosa sobre estrategias u obtén ayuda con tu rompecabezas actual!",
+    "placeholder": "Pregunta sobre estrategias, reglas u obtén ayuda...",
+    "quickQuestions": "Preguntas rápidas:",
+    "quickTips": {
+        "strategy": "¿Qué estrategias debería usar?",
+        "stuck": "Estoy atascado, ¿qué debo hacer?",
+        "faster": "¿Cómo resuelvo más rápido?",
+        "rules": "Ayúdame a entender las reglas del Sudoku"
+    }
   }
 }
