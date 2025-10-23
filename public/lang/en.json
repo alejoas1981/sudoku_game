@@ -30,7 +30,10 @@
         "title": "Theme",
         "light": "Light",
         "dark": "Dark",
-        "system": "System"
+        "system": "System",
+        "sepia": "Sepia",
+        "blueprint": "Blueprint",
+        "high_contrast": "High Contrast"
     },
     "install": {
         "button": "Install App",

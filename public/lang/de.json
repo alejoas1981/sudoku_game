@@ -30,7 +30,10 @@
         "title": "Thema",
         "light": "Hell",
         "dark": "Dunkel",
-        "system": "System"
+        "system": "System",
+        "sepia": "Sepia",
+        "blueprint": "Blaupause",
+        "high_contrast": "Hoher Kontrast"
     },
     "install": {
         "button": "App installieren",

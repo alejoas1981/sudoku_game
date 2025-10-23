@@ -30,7 +30,10 @@
         "title": "Тема",
         "light": "Светлая",
         "dark": "Темная",
-        "system": "Системная"
+        "system": "Системная",
+        "sepia": "Сепия",
+        "blueprint": "Чертеж",
+        "high_contrast": "Контрастная"
     },
     "install": {
         "button": "Установить",

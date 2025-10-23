@@ -16,6 +16,7 @@ export default {
             fontFamily: {
                 inter: ['Inter', 'system-ui', 'sans-serif'],
                 mono: ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
+                caveat: ['Caveat', 'cursive'], // <-- Added new font
             },
             colors: {
                 border: "hsl(var(--border))",

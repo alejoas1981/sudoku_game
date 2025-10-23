@@ -4,7 +4,10 @@ import { useTranslation } from '@/context/TranslationContext';
 import { useTheme } from '@/components/ThemeProvider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, Laptop, Download, Share } from 'lucide-react';
+import { Sun, Moon, Laptop, Download, Share, Book, DraftingCompass, Contrast } from 'lucide-react';
+
+// Define the full type for themes
+type Theme = "dark" | "light" | "system" | "sepia" | "blueprint" | "high-contrast";
 
 interface BeforeInstallPromptEvent extends Event {
     readonly platforms: Array<string>;
@@ -20,12 +23,10 @@ export const Footer: React.FC = () => {
     const [isStandalone, setIsStandalone] = useState(false);
 
     useEffect(() => {
-        // Detect if the app is running in standalone mode
         if (window.matchMedia('(display-mode: standalone)').matches) {
             setIsStandalone(true);
         }
 
-        // Detect iOS
         const isIosDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
         setIsIos(isIosDevice);
 
@@ -55,8 +56,8 @@ export const Footer: React.FC = () => {
                 
                 <div className="flex flex-wrap items-center justify-center gap-4">
                     <LanguageSelector />
-                    <Select value={theme} onValueChange={(value) => setTheme(value as "light" | "dark" | "system")}>
-                        <SelectTrigger className="w-32 h-8 text-xs">
+                    <Select value={theme} onValueChange={(value) => setTheme(value as Theme)}>
+                        <SelectTrigger className="w-40 h-8 text-xs"> {/* Increased width */}
                             <SelectValue placeholder={t('footer.theme.title')} />
                         </SelectTrigger>
                         <SelectContent>
@@ -65,6 +66,15 @@ export const Footer: React.FC = () => {
                             </SelectItem>
                             <SelectItem value="dark">
                                 <div className="flex items-center gap-2"><Moon className="w-4 h-4" /><span>{t('footer.theme.dark')}</span></div>
+                            </SelectItem>
+                            <SelectItem value="sepia">
+                                <div className="flex items-center gap-2"><Book className="w-4 h-4" /><span>{t('footer.theme.sepia')}</span></div>
+                            </SelectItem>
+                            <SelectItem value="blueprint">
+                                <div className="flex items-center gap-2"><DraftingCompass className="w-4 h-4" /><span>{t('footer.theme.blueprint')}</span></div>
+                            </SelectItem>
+                            <SelectItem value="high-contrast">
+                                <div className="flex items-center gap-2"><Contrast className="w-4 h-4" /><span>{t('footer.theme.high_contrast')}</span></div>
                             </SelectItem>
                             <SelectItem value="system">
                                 <div className="flex items-center gap-2"><Laptop className="w-4 h-4" /><span>{t('footer.theme.system')}</span></div>

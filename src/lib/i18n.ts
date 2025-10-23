@@ -33,6 +33,9 @@ export interface Translation {
             light: string;
             dark: string;
             system: string;
+            sepia: string;
+            blueprint: string;
+            high_contrast: string;
         };
         install: {
             button: string;
