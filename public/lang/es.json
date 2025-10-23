@@ -1,7 +1,7 @@
 {
   "language": "Español",
   "game": {
-    "title": "Sudoku Journal",
+    "title": "Diario de Sudoku",
     "subtitle": "Juego de rompecabezas clásico en estilo diario",
     "newGame": "Nuevo Juego",
     "hint": "Pista",
@@ -31,6 +31,10 @@
         "light": "Claro",
         "dark": "Oscuro",
         "system": "Sistema"
+    },
+    "install": {
+        "button": "Instalar App",
+        "ios_tip": "Para instalar, toca el icono de Compartir y luego \"Añadir a la pantalla de inicio\""
     }
   },
   "help": {

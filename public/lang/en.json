@@ -31,6 +31,10 @@
         "light": "Light",
         "dark": "Dark",
         "system": "System"
+    },
+    "install": {
+        "button": "Install App",
+        "ios_tip": "To install, tap the Share icon and then \"Add to Home Screen\""
     }
   },
   "help": {

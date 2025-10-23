@@ -34,6 +34,10 @@ export interface Translation {
             dark: string;
             system: string;
         };
+        install: {
+            button: string;
+            ios_tip: string;
+        };
     };
     help: {
         title: string;

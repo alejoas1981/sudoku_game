@@ -10,6 +10,7 @@ import { Difficulty } from '@/lib/sudoku';
 import { initializeAPI, cleanupAPI } from '@/lib/api';
 import { register } from '@/lib/serviceWorkerRegistration';
 import { toast } from 'sonner';
+import { BookMarked } from 'lucide-react'; // <-- Import the icon
 
 const Index = () => {
     const { t, loading } = useTranslation();
@@ -54,6 +55,13 @@ const Index = () => {
         return () => cleanupAPI();
     }, []);
 
+    // Effect to update document title when language changes
+    useEffect(() => {
+        if (!loading) {
+            document.title = t('game.title');
+        }
+    }, [t, loading]);
+
     if (loading) {
         return (
             <div className="min-h-screen bg-background flex items-center justify-center">
@@ -87,7 +95,10 @@ const Index = () => {
         <div className="min-h-screen bg-background p-4">
             <div className="max-w-6xl mx-auto">
                 <header className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-primary mb-2">{t('game.title')}</h1>
+                    <h1 className="text-4xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
+                        <BookMarked className="w-8 h-8" /> {/* <-- Add the icon */}
+                        {t('game.title')}
+                    </h1>
                     <p className="text-muted-foreground">{t('game.subtitle')}</p>
                 </header>
 

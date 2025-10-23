@@ -1,7 +1,7 @@
 {
   "language": "Français",
   "game": {
-    "title": "Sudoku Journal",
+    "title": "Journal de Sudoku",
     "subtitle": "Jeu de puzzle classique dans le style journal",
     "newGame": "Nouveau Jeu",
     "hint": "Indice",
@@ -31,6 +31,10 @@
         "light": "Clair",
         "dark": "Sombre",
         "system": "Système"
+    },
+    "install": {
+        "button": "Installer l'app",
+        "ios_tip": "Pour installer, appuyez sur l'icône Partager, puis sur \"Ajouter à l'écran d'accueil\""
     }
   },
   "help": {

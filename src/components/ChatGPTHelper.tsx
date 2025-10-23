@@ -121,7 +121,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                     {messages.length === 0 && (
                         <div className="p-4 space-y-2">
                             <p className="text-sm text-muted-foreground">{t('chat.quickQuestions')}</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2"> {/* <-- THE FINAL FIX */}
                                 {quickTipKeys.map((tipKey, index) => {
                                     const tipText = t(`chat.quickTips.${tipKey}`);
                                     return (
@@ -133,7 +133,7 @@ export const ChatGPTHelper: React.FC<ChatGPTHelperProps> = ({ gameState }) => {
                                             onClick={() => handleSend(tipText)}
                                         >
                                             <MessageCircle className="w-3 h-3 mr-2 flex-shrink-0" />
-                                            <span className="text-xs">{tipText}</span>
+                                            <span className="text-xs whitespace-normal">{tipText}</span>
                                         </Button>
                                     );
                                 })}
